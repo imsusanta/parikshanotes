@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-500 ease-out`}
+      className={`fixed top-12 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-500 ease-out`}
     >
       <div
         className={`w-full px-6 py-3.5 rounded-2xl border transition-all duration-500 ease-out flex items-center justify-between backdrop-blur-xl ${

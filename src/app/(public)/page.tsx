@@ -63,9 +63,9 @@ export default function HomePage() {
         <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/5 blur-[150px] pointer-events-none" />
         <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-saffron/5 blur-[180px] pointer-events-none" />
         
-        {/* Halftone dot pattern overlay */}
-        <div className="absolute inset-0 bg-halftone opacity-40 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/95 to-ink pointer-events-none" />
+        {/* Premium dot pattern overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-70 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/20 via-ink/95 to-ink pointer-events-none" />
 
         {/* Floating geometric lines */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
@@ -78,6 +78,12 @@ export default function HomePage() {
             
             {/* Left Column (Text content) */}
             <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="lg:col-span-7 space-y-6">
+              {/* Topper-Verified Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue font-semibold text-xs tracking-wider uppercase">
+                <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
+                Topper-Verified Study Material
+              </div>
+
               {/* Tagline word-by-word animation */}
               <div className="flex flex-wrap gap-2.5">
                 {taglineWords.map((word, i) => (
@@ -135,38 +141,85 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column (Featured interactive card showcase) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="lg:col-span-5 hidden lg:flex justify-center items-center relative"
-            >
-              {/* Radial gradient backing for showcase */}
-              <div className="absolute w-[350px] h-[350px] rounded-full bg-brand-blue/15 blur-[80px]" />
+            {/* Right Column (Featured interactive overlapping showcase) */}
+            <div className="lg:col-span-5 hidden lg:flex justify-center items-center h-[500px] relative select-none">
+              {/* Radial glow background */}
+              <div className="absolute w-[400px] h-[400px] rounded-full bg-brand-blue/10 blur-[90px] -z-10" />
               
-              <div className="w-full max-w-[320px] aspect-[3.2/4.2] rounded-3xl p-6 bg-gradient-to-b from-brand-blue/5 to-saffron/5 border border-brand-blue/20 shadow-2xl relative backdrop-blur-xl">
-                <div className="w-full h-full rounded-2xl bg-white/85 p-5 flex flex-col justify-between border border-slate-100">
-                  <div className="space-y-4">
+              {/* Card 1 (UPSC Special) */}
+              <motion.div
+                initial={{ opacity: 0, x: 30, y: -20, rotate: -3 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: -40, 
+                  y: [-10, 10, -10],
+                  rotate: -6 
+                }}
+                transition={{ 
+                  opacity: { delay: 0.3 }, 
+                  x: { delay: 0.3 },
+                  y: { repeat: Infinity, duration: 6, ease: "easeInOut" } 
+                }}
+                className="absolute w-[250px] aspect-[3.2/4.2] rounded-3xl p-5 bg-gradient-to-b from-white/95 to-brand-blue/5 border border-brand-blue/20 shadow-2xl backdrop-blur-xl hover:scale-[1.03] transition-transform duration-300 cursor-pointer"
+              >
+                <div className="w-full h-full rounded-2xl bg-white/90 p-4 flex flex-col justify-between border border-slate-100/50 shadow-inner">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-[9px] px-2.5 py-0.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold uppercase tracking-wider">UPSC Special</span>
-                      <span className="text-xs text-chalk font-semibold">⭐️ 4.9</span>
+                      <span className="text-[8px] px-2.5 py-0.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold uppercase tracking-wider">UPSC Special</span>
+                      <span className="text-[10px] text-chalk font-bold">⭐️ 4.9</span>
                     </div>
-                    <div className="w-full aspect-[4/3] rounded-xl bg-gradient-to-tr from-brand-blue/10 to-saffron/10 flex items-center justify-center">
-                      <span className="text-5xl">📖</span>
+                    <div className="w-full aspect-[4/3] rounded-xl bg-gradient-to-tr from-brand-blue/10 to-brand-blue/5 flex items-center justify-center relative overflow-hidden">
+                      <span className="text-4xl">📖</span>
                     </div>
                     <div>
-                      <h3 className="text-base font-bold text-chalk">Indian Polity Core Notes</h3>
-                      <p className="text-xs text-chalk-muted mt-1">Instant high-yield revision pages</p>
+                      <h3 className="text-sm font-black text-chalk leading-tight">Indian Polity Core</h3>
+                      <p className="text-[10px] text-chalk-muted mt-0.5">Instant high-yield revision</p>
                     </div>
                   </div>
-                  <div className="flex justify-between items-center pt-4 border-t border-slate-100">
-                    <span className="text-lg font-bold text-brand-blue font-mono">₹199.00</span>
-                    <Link href="/shop" className="text-xs text-brand-blue font-bold hover:underline">Get Notes →</Link>
+                  <div className="flex justify-between items-center pt-3 border-t border-slate-100">
+                    <span className="text-base font-extrabold text-brand-blue font-mono">₹199</span>
+                    <span className="text-[10px] text-brand-blue font-black tracking-wide uppercase hover:underline">Get Notes</span>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+
+              {/* Card 2 (SSC Special) */}
+              <motion.div
+                initial={{ opacity: 0, x: -30, y: 20, rotate: 3 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: 40, 
+                  y: [10, -10, 10],
+                  rotate: 6 
+                }}
+                transition={{ 
+                  opacity: { delay: 0.5 }, 
+                  x: { delay: 0.5 },
+                  y: { repeat: Infinity, duration: 5, ease: "easeInOut" } 
+                }}
+                className="absolute w-[250px] aspect-[3.2/4.2] rounded-3xl p-5 bg-gradient-to-b from-white/95 to-saffron/5 border border-saffron/20 shadow-2xl backdrop-blur-xl z-10 hover:scale-[1.03] transition-transform duration-300 cursor-pointer"
+              >
+                <div className="w-full h-full rounded-2xl bg-white/90 p-4 flex flex-col justify-between border border-slate-100/50 shadow-inner">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[8px] px-2.5 py-0.5 rounded-full bg-saffron/10 text-saffron-dark font-bold uppercase tracking-wider">SSC CGL</span>
+                      <span className="text-[10px] text-chalk font-bold">⭐️ 5.0</span>
+                    </div>
+                    <div className="w-full aspect-[4/3] rounded-xl bg-gradient-to-tr from-saffron/10 to-saffron/5 flex items-center justify-center relative overflow-hidden">
+                      <span className="text-4xl">📐</span>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-black text-chalk leading-tight">Quantitative Aptitude</h3>
+                      <p className="text-[10px] text-chalk-muted mt-0.5">Formulas & Shortcuts</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center pt-3 border-t border-slate-100">
+                    <span className="text-base font-extrabold text-brand-blue font-mono">₹299</span>
+                    <span className="text-[10px] text-brand-blue font-black tracking-wide uppercase hover:underline">Get Notes</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
 
           </div>
         </div>
@@ -175,7 +228,7 @@ export default function HomePage() {
       {/* ===== EXAM CATEGORY STRIP ===== */}
       <section className="py-6 bg-white border-y border-slate-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="flex items-center gap-4 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="flex items-center justify-center gap-4 overflow-x-auto pb-1 scrollbar-hide">
             <span className="text-xs font-bold text-chalk-muted uppercase tracking-wider whitespace-nowrap mr-2">Filters:</span>
             {['All', ...categories].map((cat) => (
               <button
